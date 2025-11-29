@@ -1,17 +1,15 @@
-import { UnstyledButton, Group } from '@mantine/core';
+import { Group, TextInput, Anchor } from '@mantine/core';
 
 export function Navigation() {
   return (
     <Group gap="xl">
-      <UnstyledButton component="a" href="#" c="white" fz="xl">
-        Search
-      </UnstyledButton>
-      <UnstyledButton component="a" href="#" c="white" fz="xl">
+      <TextInput size="sm" placeholder="Search" />
+      <Anchor href="#" underline="never" c="white" fw={500} fz="xl">
+        Catalog
+      </Anchor>
+      <Anchor href="#" underline="never" c="white" fw={500} fz="xl">
         Social
-      </UnstyledButton>
-      <UnstyledButton component="a" href="#" c="white" fz="xl">
-        Forum
-      </UnstyledButton>
+      </Anchor>
     </Group>
   );
 }

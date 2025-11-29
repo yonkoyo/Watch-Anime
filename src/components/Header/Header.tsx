@@ -1,4 +1,4 @@
-import { Container, Group, Anchor } from '@mantine/core';
+import { Anchor, Container, Group, Image } from '@mantine/core';
 import { Navigation } from './Navigation';
 import { Auth } from './Auth';
 
@@ -7,8 +7,8 @@ export function Header() {
     <header style={{ backgroundColor: '#1e293b', padding: '1rem 0' }}>
       <Container size="lg">
         <Group justify="space-between" align="center">
-          <Anchor href="#" underline="never" fz="xl" fw={700} c="white">
-            W/A
+          <Anchor href="/" underline="never">
+            <Image h={55} w={55} src="/imgs/face.png" alt="logo" />
           </Anchor>
           <Navigation />
           <Auth />

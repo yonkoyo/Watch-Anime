@@ -6,7 +6,12 @@ import { Header } from './components/Header/Header';
 
 function App() {
   return (
-    <MantineProvider>
+    <MantineProvider
+      theme={{
+        fontFamily: 'Outfit, sans-serif',
+        headings: { fontFamily: 'Outfit, sans-serif' },
+      }}
+    >
       <Header />
     </MantineProvider>
   );
