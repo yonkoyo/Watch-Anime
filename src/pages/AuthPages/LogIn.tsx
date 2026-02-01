@@ -1,14 +1,22 @@
 import { Button, Center, Paper, PasswordInput, Stack, TextInput, Text } from '@mantine/core';
 
+const AUTH_CARD_HEIGHT = 360;
+
 export function LogIn() {
   return (
-    <div style={{ marginTop: '80px', background: '#0f172a' }}>
-      <Center h={500}>
-        <Paper radius="xl" p="xl" w={350} bg="#1e293b">
+    <div style={{ minHeight: '100vh', paddingTop: '150px', background: '#0f172a' }}>
+      <Center h="100%">
+        <Paper
+          radius="xl"
+          p="xl"
+          w={350}
+          bg="#1e293b"
+          style={{ minHeight: AUTH_CARD_HEIGHT, display: 'flex', flexDirection: 'column' }}
+        >
           <Text size="lg" fw={700} ta="center" mb="md" c="white">
             Login
           </Text>
-          <Stack gap="sm">
+          <Stack gap="sm" style={{ flex: 1 }}>
             <TextInput
               radius="lg"
               label="Email"
@@ -23,10 +31,10 @@ export function LogIn() {
               required
               c="white"
             ></PasswordInput>
-            <Button radius="lg" fullWidth mt="sm">
-              Login
-            </Button>
           </Stack>
+          <Button radius="lg" fullWidth mt="sm">
+            Login
+          </Button>
         </Paper>
       </Center>
     </div>

@@ -5,9 +5,9 @@ export function Auth() {
   return (
     <Group gap="lg">
       <Anchor component={Link} to="/login" underline="never" c="white" fw={500} fz="xl">
-        Log In
+        Login
       </Anchor>
-      <Button component={Link} to="/signup" c="white" fz="xl">
+      <Button component={Link} to="/signup" radius="lg" c="white" fz="xl">
         Sign Up
       </Button>
     </Group>
