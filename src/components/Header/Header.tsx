@@ -4,7 +4,16 @@ import { Auth } from './Auth';
 
 export function Header() {
   return (
-    <header style={{ backgroundColor: '#1e293b', padding: '1rem 0' }}>
+    <header
+      style={{
+        backgroundColor: '#1e293b',
+        padding: '1rem 0',
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+      }}
+    >
       <Container size="lg">
         <Group justify="space-between" align="center">
           <Anchor href="/" underline="never">
