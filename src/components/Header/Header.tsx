@@ -1,6 +1,7 @@
 import { Anchor, Container, Group, Image } from '@mantine/core';
 import { Navigation } from './Navigation';
 import { Auth } from './Auth';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   return (
@@ -12,11 +13,12 @@ export function Header() {
         top: '0',
         left: '0',
         right: '0',
+        zIndex: 1000,
       }}
     >
       <Container size="lg">
         <Group justify="space-between" align="center">
-          <Anchor href="/" underline="never">
+          <Anchor component={Link} to="/" underline="never">
             <Image h={55} w={55} src="/imgs/face.png" alt="logo" />
           </Anchor>
           <Navigation />

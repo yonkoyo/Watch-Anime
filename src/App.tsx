@@ -8,6 +8,7 @@ import { MainPage } from './pages/MainPage/MainPage';
 import { SignUp } from './pages/AuthPages/SignUp';
 import { Header } from './components/Header/Header';
 import { LogIn } from './pages/AuthPages/LogIn';
+import { CatalogPage } from './pages/CatalogPage/CatalogPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/catalog" element={<CatalogPage />} />
       </Routes>
     </MantineProvider>
   );
