@@ -9,6 +9,7 @@ import { SignUp } from './pages/AuthPages/SignUp';
 import { Header } from './components/Header/Header';
 import { LogIn } from './pages/AuthPages/LogIn';
 import { CatalogPage } from './pages/CatalogPage/CatalogPage';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   return (
@@ -18,13 +19,25 @@ function App() {
         headings: { fontFamily: 'Outfit, sans-serif' },
       }}
     >
-      <Header />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/catalog" element={<CatalogPage />} />
-      </Routes>
+      <div
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Header />
+
+        <div style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </MantineProvider>
   );
 }

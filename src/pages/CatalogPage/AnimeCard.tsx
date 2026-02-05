@@ -3,27 +3,25 @@ import { Card, Image, Text, Group } from '@mantine/core';
 type AnimeCardProps = {
   title: string;
   image: string;
-  rating: number;
+  rating: number | null;
   year: number;
 };
 
 export function AnimeCard({ title, image, rating, year }: AnimeCardProps) {
   return (
-    <Card radius="lg" bg="#1e293b">
+    <Card radius="lg" bg="#1e293b" h="100%" style={{ display: 'flex', flexDirection: 'column' }}>
       <Card.Section>
         <Image src={image} height={260} />
       </Card.Section>
-
-      <Text fw={600} mt="sm" c="white">
+      <Text fw={600} mt="sm" c="white" lineClamp={2}>
         {title}
       </Text>
-
-      <Group justify="space-between" mt="xs">
+      <Group justify="space-between" mt="auto" pt="sm">
         <Text size="sm" c="gray.4">
           {year}
         </Text>
         <Text size="sm" c="yellow">
-          ⭐ {rating}
+          ⭐ {rating ?? '-'}
         </Text>
       </Group>
     </Card>
