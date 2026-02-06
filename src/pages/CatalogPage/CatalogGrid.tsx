@@ -54,10 +54,13 @@ export function CatalogGrid() {
         {anime.map((item) => (
           <AnimeCard
             key={item.kinopoiskId}
-            title={item.nameRu || item.nameEn}
+            titleRu={item.nameRu}
+            titleEn={item.nameEn}
             image={item.posterUrlPreview}
             rating={item.ratingKinopoisk}
             year={item.year}
+            description={item.description}
+            episodes={item.episodesCount}
           />
         ))}
       </SimpleGrid>
