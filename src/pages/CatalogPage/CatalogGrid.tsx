@@ -1,23 +1,38 @@
 import { SimpleGrid, Center, Loader, Text, Pagination, Stack } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getAnime } from '../../api/kinopoisk';
 import { AnimeCard } from './AnimeCard';
 import type { KinopoiskAnime } from '../../types/anime';
+import type { CatalogFilters } from '../../types/filters';
 
-export function CatalogGrid() {
+type Props = {
+  filters: CatalogFilters;
+};
+
+export function CatalogGrid({ filters }: Props) {
   const [anime, setAnime] = useState<KinopoiskAnime[]>([]);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get('page') ?? 1);
 
   useEffect(() => {
     setLoading(true);
     setError('');
 
-    getAnime(page)
+    getAnime(page, filters)
       .then((data) => {
-        setAnime(data.items);
+        const filtered = data.items.filter((item: KinopoiskAnime) => {
+          const rating = item.ratingKinopoisk ?? 0;
+          return (
+            rating >= filters.ratingFrom &&
+            rating <= filters.ratingTo &&
+            (item.episodesCount ?? 0) >= filters.episodesFrom
+          );
+        });
+        setAnime(filtered);
         setTotalPages(data.totalPages);
       })
       .catch(() => {
@@ -26,7 +41,7 @@ export function CatalogGrid() {
       .finally(() => {
         setLoading(false);
       });
-  }, [page]);
+  }, [page, filters]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -66,7 +81,17 @@ export function CatalogGrid() {
         ))}
       </SimpleGrid>
       <Center>
-        <Pagination value={page} onChange={setPage} total={totalPages} radius="lg" />
+        <Pagination
+          value={page}
+          onChange={(newPage) =>
+            setSearchParams({
+              ...Object.fromEntries(searchParams.entries()),
+              page: String(newPage),
+            })
+          }
+          total={totalPages}
+          radius="lg"
+        />
       </Center>
     </Stack>
   );
