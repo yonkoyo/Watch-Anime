@@ -1,7 +1,9 @@
 import { Card, Image, Text, Group, Popover, Stack } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
+import { Link } from 'react-router-dom';
 
 type AnimeCardProps = {
+  id: number;
   titleRu?: string | null;
   titleEn?: string | null;
   image: string;
@@ -12,6 +14,7 @@ type AnimeCardProps = {
 };
 
 export function AnimeCard({
+  id,
   titleRu,
   titleEn,
   image,
@@ -27,6 +30,8 @@ export function AnimeCard({
       <Popover.Target>
         <div ref={ref}>
           <Card
+            component={Link}
+            to={`/anime/${id}`}
             radius="lg"
             bg="#1e293b"
             h="100%"

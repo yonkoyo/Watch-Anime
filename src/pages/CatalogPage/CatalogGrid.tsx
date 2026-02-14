@@ -54,6 +54,7 @@ export function CatalogGrid() {
         {anime.map((item) => (
           <AnimeCard
             key={item.kinopoiskId}
+            id={item.kinopoiskId}
             titleRu={item.nameRu}
             titleEn={item.nameEn}
             image={item.posterUrlPreview}
