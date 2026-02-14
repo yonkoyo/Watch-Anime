@@ -10,6 +10,7 @@ import { Header } from './components/Header/Header';
 import { LogIn } from './pages/AuthPages/LogIn';
 import { CatalogPage } from './pages/CatalogPage/CatalogPage';
 import { Footer } from './components/Footer/Footer';
+import { AnimePage } from './pages/AnimePage/AnimePage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/anime/:id" element={<AnimePage />} />
           </Routes>
         </div>
         <Footer />

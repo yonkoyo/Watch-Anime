@@ -14,3 +14,18 @@ export async function getAnime(page = 1) {
 
   return res.json();
 }
+
+export async function getAnimeById(id: number) {
+  const res = await fetch(`${BASE_URL}/films/${id}`, {
+    headers: {
+      'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch anime');
+  }
+
+  return res.json();
+}
