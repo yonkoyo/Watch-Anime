@@ -7,6 +7,7 @@ import { PageLayout } from '../AnimePage/PageLayout';
 
 export function CatalogPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const keyword = searchParams.get('keyword') ?? '';
 
   const filters: CatalogFilters = {
     ratingFrom: Number(searchParams.get('ratingFrom') ?? 0),
@@ -41,7 +42,7 @@ export function CatalogPage() {
         </Title>
         <Grid>
           <Grid.Col span={{ base: 12, md: 9 }}>
-            <CatalogGrid filters={filters} />
+            <CatalogGrid filters={filters} keyword={keyword} />
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 3 }}>
             <FiltersPanel filters={filters} setFilters={updateFilters} />

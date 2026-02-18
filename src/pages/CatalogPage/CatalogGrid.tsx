@@ -8,9 +8,10 @@ import type { CatalogFilters } from '../../types/filters';
 
 type Props = {
   filters: CatalogFilters;
+  keyword?: string;
 };
 
-export function CatalogGrid({ filters }: Props) {
+export function CatalogGrid({ filters, keyword }: Props) {
   const [anime, setAnime] = useState<KinopoiskAnime[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ export function CatalogGrid({ filters }: Props) {
     setLoading(true);
     setError('');
 
-    getAnime(page, filters)
+    getAnime(page, filters, keyword)
       .then((data) => {
         const filtered = data.items.filter((item: KinopoiskAnime) => {
           const rating = item.ratingKinopoisk ?? 0;
@@ -41,7 +42,7 @@ export function CatalogGrid({ filters }: Props) {
       .finally(() => {
         setLoading(false);
       });
-  }, [page, filters]);
+  }, [page, filters, keyword]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
