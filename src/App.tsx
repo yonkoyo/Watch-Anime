@@ -11,6 +11,7 @@ import { LogIn } from './pages/AuthPages/LogIn';
 import { CatalogPage } from './pages/CatalogPage/CatalogPage';
 import { Footer } from './components/Footer/Footer';
 import { AnimePage } from './pages/AnimePage/AnimePage';
+import { SocialPage } from './pages/SocialPage/SocialPage';
 
 function App() {
   return (
@@ -28,7 +29,6 @@ function App() {
         }}
       >
         <Header />
-
         <div style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<MainPage />} />
@@ -36,6 +36,7 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/anime/:id" element={<AnimePage />} />
+            <Route path="/social" element={<SocialPage />} />
           </Routes>
         </div>
         <Footer />

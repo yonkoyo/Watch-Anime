@@ -2,7 +2,7 @@ import type { CatalogFilters } from '../types/filters';
 
 const BASE_URL = 'https://kinopoiskapiunofficial.tech/api/v2.2';
 
-export async function getAnime(page = 1, filters?: CatalogFilters) {
+export async function getAnime(page = 1, filters?: CatalogFilters, keyword?: string) {
   const params = new URLSearchParams({
     genres: String(filters?.genre ?? 24),
     ratingFrom: String(filters?.ratingFrom ?? 0),
@@ -12,6 +12,10 @@ export async function getAnime(page = 1, filters?: CatalogFilters) {
     order: filters?.order === 'YEAR' ? 'YEAR' : 'RATING',
     page: String(page),
   });
+
+  if (keyword) {
+    params.append('keyword', keyword);
+  }
 
   const res = await fetch(`${BASE_URL}/films?${params.toString()}`, {
     headers: {
