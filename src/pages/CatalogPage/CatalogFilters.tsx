@@ -1,5 +1,5 @@
 import { RangeSlider, Select, NumberInput, Stack, Button, Text, Paper } from '@mantine/core';
-import type { CatalogFilters } from '../../types/filters';
+import type { CatalogFilters } from '@/types/filters';
 
 type Props = {
   filters: CatalogFilters;

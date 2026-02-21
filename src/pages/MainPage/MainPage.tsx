@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Container, Stack, Loader, Center } from '@mantine/core';
 import { PageLayout } from '../AnimePage/PageLayout';
-import { getAnime } from '../../api/kinopoisk';
-import type { KinopoiskAnime } from '../../types/anime';
-import { AnimeSection } from '../../components/AnimeSection/AnimeSection';
+import { getAnime } from '@/api/kinopoisk';
+import type { KinopoiskAnime } from '@/types/anime';
+import { AnimeSection } from '@/components/AnimeSection/AnimeSection';
 
 export function MainPage() {
   const [popular, setPopular] = useState<KinopoiskAnime[]>([]);

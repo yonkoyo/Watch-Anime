@@ -1,6 +1,6 @@
 import { Grid, Container, Title } from '@mantine/core';
 import { useSearchParams } from 'react-router-dom';
-import type { CatalogFilters } from '../../types/filters';
+import type { CatalogFilters } from '@/types/filters';
 import { CatalogFilters as FiltersPanel } from './CatalogFilters';
 import { CatalogGrid } from './CatalogGrid';
 import { PageLayout } from '../AnimePage/PageLayout';

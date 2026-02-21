@@ -1,6 +1,6 @@
 import { Title, Stack, SimpleGrid } from '@mantine/core';
-import { AnimeCard } from '../../pages/CatalogPage/AnimeCard';
-import type { KinopoiskAnime } from '../../types/anime';
+import { AnimeCard } from '@/pages/CatalogPage/AnimeCard';
+import type { KinopoiskAnime } from '@/types/anime';
 
 type Props = {
   title: string;

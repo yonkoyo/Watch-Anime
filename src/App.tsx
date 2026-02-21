@@ -1,47 +1,39 @@
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+import styles from './App.module.css';
 
-import { MantineProvider } from '@mantine/core';
 import { Routes, Route } from 'react-router-dom';
+import { AppShell } from '@mantine/core';
+import { Header } from '@/components/Header/Header';
+import { Footer } from '@/components/Footer/Footer';
 
-import { MainPage } from './pages/MainPage/MainPage';
-import { SignUp } from './pages/AuthPages/SignUp';
-import { Header } from './components/Header/Header';
-import { LogIn } from './pages/AuthPages/LogIn';
-import { CatalogPage } from './pages/CatalogPage/CatalogPage';
-import { Footer } from './components/Footer/Footer';
-import { AnimePage } from './pages/AnimePage/AnimePage';
-import { SocialPage } from './pages/SocialPage/SocialPage';
+import { MainPage } from '@/pages/MainPage/MainPage';
+import { SignUp } from '@/pages/AuthPages/SignUp';
+import { LogIn } from '@/pages/AuthPages/LogIn';
+import { CatalogPage } from '@/pages/CatalogPage/CatalogPage';
+import { AnimePage } from '@/pages/AnimePage/AnimePage';
+import { SocialPage } from '@/pages/SocialPage/SocialPage';
+import { WatchPage } from '@/pages/WatchPage/WatchPage';
 
 function App() {
   return (
-    <MantineProvider
-      theme={{
-        fontFamily: 'Outfit, sans-serif',
-        headings: { fontFamily: 'Outfit, sans-serif' },
-      }}
-    >
-      <div
-        style={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+    <AppShell className={styles.App}>
+      <AppShell.Header>
         <Header />
-        <div style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/catalog" element={<CatalogPage />} />
-            <Route path="/anime/:id" element={<AnimePage />} />
-            <Route path="/social" element={<SocialPage />} />
-          </Routes>
-        </div>
-        <Footer />
-      </div>
-    </MantineProvider>
+      </AppShell.Header>
+      <AppShell.Main>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/anime/:id" element={<AnimePage />} />
+          <Route path="/watch/:id" element={<WatchPage />} />
+          <Route path="/social" element={<SocialPage />} />
+        </Routes>
+      </AppShell.Main>
+      <Footer />
+    </AppShell>
   );
 }
 
