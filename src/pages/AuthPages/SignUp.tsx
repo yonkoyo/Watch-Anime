@@ -2,20 +2,16 @@ import { Button, PasswordInput, Stack, TextInput, Text, Anchor } from '@mantine/
 import { Link } from 'react-router-dom';
 import { AuthLayout } from './AuthLayout';
 import { useForm } from 'react-hook-form';
-import { emailValidation, passwordValidation, usernameValidation } from './auth.validation';
-
-type SignUpFormValues = {
-  email: string;
-  username: string;
-  password: string;
-};
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signUpSchema, type SignUpFormData } from './auth.schema';
 
 export function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpFormValues>({
+  } = useForm<SignUpFormData>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: '',
       username: '',
@@ -23,7 +19,7 @@ export function SignUp() {
     },
   });
 
-  const onSubmit = (data: SignUpFormValues) => {
+  const onSubmit = (data: SignUpFormData) => {
     console.log('SIGN UP DATA:', data);
   };
 
@@ -39,7 +35,7 @@ export function SignUp() {
             placeholder="you@example.com"
             radius="lg"
             c="white"
-            {...register('email', emailValidation)}
+            {...register('email')}
             error={errors.email?.message}
           />
           <TextInput
@@ -47,7 +43,7 @@ export function SignUp() {
             placeholder="username"
             radius="lg"
             c="white"
-            {...register('username', usernameValidation)}
+            {...register('username')}
             error={errors.username?.message}
           />
           <PasswordInput
@@ -55,7 +51,7 @@ export function SignUp() {
             placeholder="password"
             radius="lg"
             c="white"
-            {...register('password', passwordValidation)}
+            {...register('password')}
             error={errors.password?.message}
           />
           <Button type="submit" radius="lg" fullWidth mt="sm">

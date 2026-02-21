@@ -1,9 +1,27 @@
+import axios from 'axios';
 import type { CatalogFilters } from '@/types/filters';
+import type { KinopoiskAnime, KinopoiskAnimeDetail } from '@/types/anime';
 
-const BASE_URL = 'https://kinopoiskapiunofficial.tech/api/v2.2';
+const api = axios.create({
+  baseURL: 'https://kinopoiskapiunofficial.tech/api/v2.2',
+  headers: {
+    'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY,
+    'Content-Type': 'application/json',
+  },
+});
 
-export async function getAnime(page = 1, filters?: CatalogFilters, keyword?: string) {
-  const params = new URLSearchParams({
+type FilmsResponse = {
+  items: KinopoiskAnime[];
+  totalPages: number;
+  totalResults: number;
+};
+
+export async function getAnime(
+  page = 1,
+  filters?: CatalogFilters,
+  keyword?: string,
+): Promise<FilmsResponse> {
+  const params = {
     genres: String(filters?.genre ?? 24),
     ratingFrom: String(filters?.ratingFrom ?? 0),
     ratingTo: String(filters?.ratingTo ?? 10),
@@ -11,37 +29,24 @@ export async function getAnime(page = 1, filters?: CatalogFilters, keyword?: str
     yearTo: String(filters?.yearTo ?? new Date().getFullYear()),
     order: filters?.order === 'YEAR' ? 'YEAR' : 'RATING',
     page: String(page),
-  });
+    ...(keyword && { keyword }),
+  };
 
-  if (keyword) {
-    params.append('keyword', keyword);
+  try {
+    const { data } = await api.get<FilmsResponse>('/films', { params });
+    return data;
+  } catch (error) {
+    console.error('Error fetching anime:', error);
+    throw new Error('Не удалось загрузить аниме. Проверьте подключение или API-ключ.');
   }
-
-  const res = await fetch(`${BASE_URL}/films?${params.toString()}`, {
-    headers: {
-      'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch anime');
-  }
-
-  return res.json();
 }
 
-export async function getAnimeById(id: number) {
-  const res = await fetch(`${BASE_URL}/films/${id}`, {
-    headers: {
-      'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch anime');
+export async function getAnimeById(id: number): Promise<KinopoiskAnimeDetail> {
+  try {
+    const { data } = await api.get<KinopoiskAnimeDetail>(`/films/${id}`);
+    return data;
+  } catch (error) {
+    console.error(`Error fetching anime with id ${id}:`, error);
+    throw new Error('Не удалось загрузить информацию об аниме.');
   }
-
-  return res.json();
 }
