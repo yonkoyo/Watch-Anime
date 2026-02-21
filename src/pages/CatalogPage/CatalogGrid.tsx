@@ -1,10 +1,10 @@
 import { SimpleGrid, Center, Loader, Text, Pagination, Stack } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getAnime } from '../../api/kinopoisk';
+import { getAnime } from '@/api/kinopoisk';
 import { AnimeCard } from './AnimeCard';
-import type { KinopoiskAnime } from '../../types/anime';
-import type { CatalogFilters } from '../../types/filters';
+import type { KinopoiskAnime } from '@/types/anime';
+import type { CatalogFilters } from '@/types/filters';
 
 type Props = {
   filters: CatalogFilters;

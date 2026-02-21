@@ -2,20 +2,11 @@ import { Anchor, Container, Group, Image } from '@mantine/core';
 import { Navigation } from './Navigation';
 import { Auth } from './Auth';
 import { Link } from 'react-router-dom';
+import styles from './Header.module.css';
 
 export function Header() {
   return (
-    <header
-      style={{
-        backgroundColor: '#1e293b',
-        padding: '1rem 0',
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        right: '0',
-        zIndex: 1000,
-      }}
-    >
+    <header className={styles.header}>
       <Container size="lg">
         <Group justify="space-between" align="center">
           <Anchor component={Link} to="/" underline="never">

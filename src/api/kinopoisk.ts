@@ -1,4 +1,4 @@
-import type { CatalogFilters } from '../types/filters';
+import type { CatalogFilters } from '@/types/filters';
 
 const BASE_URL = 'https://kinopoiskapiunofficial.tech/api/v2.2';
 

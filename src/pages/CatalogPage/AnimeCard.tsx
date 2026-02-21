@@ -1,6 +1,7 @@
 import { Card, Image, Text, Group, Popover, Stack } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 import { Link } from 'react-router-dom';
+import styles from './AnimeCard.module.css';
 
 type AnimeCardProps = {
   id: number;
@@ -35,7 +36,7 @@ export function AnimeCard({
             radius="lg"
             bg="#1e293b"
             h="100%"
-            style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer' }}
+            className={styles.AnimeCard}
           >
             <Card.Section>
               <Image src={image} height={260} />

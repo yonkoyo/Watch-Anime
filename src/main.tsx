@@ -1,9 +1,20 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App.tsx';
+import { MantineProvider } from '@mantine/core';
+import App from './App';
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <>
+    <MantineProvider
+      theme={{
+        fontFamily: 'Outfit, sans-serif',
+        headings: { fontFamily: 'Outfit, sans-serif' },
+        primaryColor: 'blue',
+      }}
+    >
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MantineProvider>
+  </>,
 );
