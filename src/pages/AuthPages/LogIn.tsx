@@ -2,26 +2,23 @@ import { Button, PasswordInput, Stack, TextInput, Text, Anchor } from '@mantine/
 import { Link } from 'react-router-dom';
 import { AuthLayout } from './AuthLayout';
 import { useForm } from 'react-hook-form';
-import { emailValidation, passwordValidation } from './auth.validation';
-
-type LoginFormValues = {
-  email: string;
-  password: string;
-};
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, type LoginFormData } from './auth.schema';
 
 export function LogIn() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValues>({
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = (data: LoginFormValues) => {
+  const onSubmit = (data: LoginFormData) => {
     console.log('LOGIN DATA:', data);
   };
 
@@ -37,7 +34,7 @@ export function LogIn() {
             placeholder="you@example.com"
             radius="lg"
             c="white"
-            {...register('email', emailValidation)}
+            {...register('email')}
             error={errors.email?.message}
           />
           <PasswordInput
@@ -45,7 +42,7 @@ export function LogIn() {
             placeholder="password"
             radius="lg"
             c="white"
-            {...register('password', passwordValidation)}
+            {...register('password')}
             error={errors.password?.message}
           />
           <Button type="submit" radius="lg" fullWidth mt="sm">
